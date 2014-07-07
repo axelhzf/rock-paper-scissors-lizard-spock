@@ -7,6 +7,6 @@
     "jquery.gracket.js": "erik5388/jquery.gracket.js",
     "jquery": "~2.1.1",
     "angularLocalStorage": "~0.1.7",
-     "angular-cookies": "~1.2.19"
+    "angular-cookies": "~1.2.19"
   }
 }

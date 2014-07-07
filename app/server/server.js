@@ -12,9 +12,7 @@ var staticPath = __dirname + '/../client';
 app.use(express.static(staticPath));
 
 var users = [];
-var tournaments = [
-  new Tournament("t", 4)
-];
+var tournaments = [];
 
 io.on("connection", function (socket) {
   socket.emit("set", {state: "name"});
