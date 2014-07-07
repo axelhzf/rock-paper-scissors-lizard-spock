@@ -12,6 +12,29 @@ function Match (user1, user2) {
   this.user2.socket.activeMatch = this;
 }
 
+var winnerMovements = {
+  rock: {
+    scissors: true,
+    lizard: true
+  },
+  scissors: {
+    paper: true,
+    lizard: true
+  },
+  paper: {
+    rock: true,
+    spock: true
+  },
+  lizard: {
+    paper: true,
+    spock: true
+  },
+  spock: {
+    rock: true,
+    scissors: true
+  }
+};
+
 Match.prototype = {
   userPlay: function (user, play) {
     if (user === this.user1 && !this.play1) {
@@ -22,14 +45,11 @@ Match.prototype = {
   },
   isEnded: function () {
     return this.play1 && this.play2;
-  },
+    },
   calculateWinner: function () {
     if (this.play1 === this.play2) {
       //no winner
-    } else if ((this.play1 === ROCK && this.play2 === SCISSORS) ||
-      (this.play1 === SCISSORS && this.play2 === PAPER) ||
-      (this.play2 === PAPER && this.play2 === ROCK)
-      ) {
+    } else if (winnerMovements[this.play1][this.play2]) {
       this.winner = this.user1;
     } else {
       this.winner = this.user2;
@@ -39,6 +59,6 @@ Match.prototype = {
     this.play1 = null;
     this.play2 = null;
   }
-}
+};
 
 module.exports = Match;
