@@ -47,7 +47,7 @@ io.on("connection", function (socket) {
   });
 
   function userJoinTournament (tournament) {
-    if (tournament) {
+    if (tournament && !socket.tournament) {
       tournament.users.push(socket.user);
       socket.tournament = tournament;
       socket.join(tournament.id);
@@ -97,6 +97,7 @@ io.on("connection", function (socket) {
   });
 
   socket.on("tournament:newTournament", function () {
+    socket.tournament = null;
     socket.emit("set", {state: "tournaments", tournaments: tournaments, error: null});
   });
 
